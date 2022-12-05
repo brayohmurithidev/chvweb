@@ -1,10 +1,13 @@
 import { Avatar } from "@mui/material";
 import React from "react";
+import Prof from "../assets/images/bm.png";
 
 const UserProfile = () => {
   return (
     <div style={styles.container}>
-      <Avatar sx={{ width: 60, height: 60 }}>B</Avatar>
+      <Avatar src={Prof} sx={{ width: 60, height: 60 }}>
+        B
+      </Avatar>
       <span style={{ color: "#fff" }}>Hello, Brian</span>
     </div>
   );
