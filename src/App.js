@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import { Route, Routes } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
 import "./pages/pages.css";
+import "./components/components.css";
 import Layout from "./components/Layout";
 
 function App() {

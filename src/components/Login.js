@@ -1,15 +1,15 @@
 import { Button, FormControl, TextField } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import "./login.css";
+import React, { useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [pass, setPass] = useState("");
 
   // HANDLE LOGIN
   const handleLogin = async () => {
     try {
+      setIsLoading(true);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,7 @@ const Login = () => {
             value={pass}
             onChange={(e) => setPass(e.target.value)}
           />
-          <Button onClick={handleLogin} variant="contained">
+          <Button islo onClick={handleLogin} variant="contained">
             Login
           </Button>
         </FormControl>
