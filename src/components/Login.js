@@ -1,23 +1,15 @@
 import { Button, FormControl, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../providers/AuthProvider";
 import "./login.css";
 
 const Login = () => {
-  const { user, signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  useEffect(() => {
-    if (user != null) {
-      <Navigate to="/dashboard" replace />;
-    }
-  }, [user]);
 
   // HANDLE LOGIN
   const handleLogin = async () => {
     try {
-      await signIn(email, pass);
     } catch (error) {
       console.log(error);
     }

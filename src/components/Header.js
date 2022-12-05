@@ -42,8 +42,6 @@ const styles = {
     right: 0,
     top: 0,
     width: "100%",
-    // maxWidth: "1200px",
-    // margin: "0 auto",
     borderBottom: "1px solid #fff",
     backgroundColor: "#042E6B",
     position: "fixed",

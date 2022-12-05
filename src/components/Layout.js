@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "../../components/Header";
-import MenuItem from "../../components/MenuItem";
-import UserProfile from "../../components/UserProfile";
+import Header from "./Header";
+import UserProfile from "./UserProfile";
+import MenuItem from "./MenuItem";
 
 const Layout = () => {
   return (
@@ -25,11 +25,16 @@ export default Layout;
 
 const styles = {
   bodyWrapper: {
+    width: "100%",
+    margin: "58px auto 20px auto",
     display: "flex",
-    gap: "15px",
+    alignItems: "flex-start",
+    justifyContent: " space-between",
   },
   sideBar: {
     minWidth: "210px",
+    margin: 0,
+    padding: 0,
     maxWidth: "210px",
     top: "58px",
     height: "100vh",
@@ -38,9 +43,11 @@ const styles = {
     backgroundColor: "#053985",
     borderRight: "1px solid #777",
     boxSizing: "border-box",
-    position: "fixed",
+    position: "sticky",
   },
   contentArea: {
-    minHeight: "calc(100vh-56px)",
+    width: "100%",
+    height: "1000vh",
+    padding: "20px",
   },
 };
