@@ -7,16 +7,26 @@ import Logo from "../assets/images/logo.png";
 const Header = () => {
   return (
     <div style={styles.headerArea}>
-      <img src={Logo} alt="Logo" width="150" />
-      <div style={styles.leftheader}>
-        <FontAwesomeIcon
-          icon={faCalendar}
-          size="xs"
-          style={{ color: "#fff" }}
-        />
-        <FontAwesomeIcon icon={faUser} size="xs" style={{ color: "#fff" }} />
-        <FontAwesomeIcon icon={faBell} size="xs" style={{ color: "#fff" }} />
-        <Avatar sx={{ bgcolor: "#333", height: 24, width: 24 }}>B</Avatar>
+      <div style={styles.headercontent}>
+        <img src={Logo} alt="Logo" width="150" />
+        <div style={styles.leftheader}>
+          <FontAwesomeIcon
+            icon={faCalendar}
+            size="md"
+            style={{ color: "#fff", cursor: "pointer" }}
+          />
+          <FontAwesomeIcon
+            icon={faUser}
+            size="md"
+            style={{ color: "#fff", cursor: "pointer" }}
+          />
+          <FontAwesomeIcon
+            icon={faBell}
+            size="md"
+            style={{ color: "#fff", cursor: "pointer" }}
+          />
+          <Avatar sx={{ bgcolor: "#333", height: 24, width: 24 }}>B</Avatar>
+        </div>
       </div>
     </div>
   );
@@ -27,13 +37,23 @@ export default Header;
 // STYLES
 const styles = {
   headerArea: {
+    zIndex: 10,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: "100%",
+    // maxWidth: "1200px",
+    // margin: "0 auto",
+    borderBottom: "1px solid #fff",
+    backgroundColor: "#042E6B",
+    position: "fixed",
+  },
+  headercontent: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottom: "1px solid #fff",
-    padding: "10px 20px",
-    backgroundColor: "#042E6B",
+    padding: "10px 30px",
   },
   leftheader: {
     display: "flex",

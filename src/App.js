@@ -13,23 +13,7 @@ function App() {
       {/* <Route index element={<Home />} /> */}
       <Route path="login" element={<Login />} />
 
-      <Route
-        path="/"
-        element={
-          <PrivateRoute>
-            <Layout />
-          </PrivateRoute>
-        }
-      >
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-
+      <Route path="/" element={<Layout />}>
         {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}
