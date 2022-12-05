@@ -1,0 +1,3 @@
+sidebar = #053985
+Header = #042E6B
+hopecore green = #91be6d
