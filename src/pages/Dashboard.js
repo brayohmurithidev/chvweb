@@ -1,49 +1,74 @@
+import { Box, Grid } from "@mui/material";
+import axios from "axios";
 import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+import { useState } from "react";
+import ChvPerformance from "../components/ChvPerformance";
 
 const Dashboard = () => {
-  // let no = 1;
+  const [data, setData] = useState();
+  const myHeaders = new Headers();
+
+  myHeaders.append("Content-type", "application/json");
+  myHeaders.append(
+    "api-key",
+    "hbJIV4ENJpSB8WeVSLmi0rJQAGsSL0ft4nMfUi1WQjuWEZ32v3hqliH3pcdlrDjM"
+  );
+  // myHeaders.get('Content-Type')
+  const url =
+    "https://data.mongodb-api.com/app/data-humon/endpoint/data/v1/action/aggregate";
+
+  let body = {
+    collection: "Result",
+    database: "chvsDB",
+    dataSource: "chvsApp",
+    // projection: {},
+    pipeline: [
+      {
+        $group: {
+          _id: "$module",
+          pre_test_score: { $sum: "$pre_test_score" },
+        },
+      },
+    ],
+  };
+
+  React.useEffect(() => {
+    // GET DATA
+    axios.post(url, body, myHeaders).then((res) => setData(res.data.documents));
+  }, []);
+
+  // GET TODAY DATE
+  const today = new Date();
+  const year = today.getFullYear();
+  let month = today.toLocaleString("default", { month: "long" });
+  let day = today.getDate();
+  if (day < 10) day = "0" + day;
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>No.</TableCell>
-            <TableCell align="right">CHV</TableCell>
-            <TableCell align="right">Module</TableCell>
-            <TableCell align="right">Pre-test</TableCell>
-            <TableCell align="right">Post test</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-            <TableCell component="th" scope="row"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={9} sx={{ padding: "20px" }}>
+          <h1>Tutor's Dashboard</h1>
+          {`${day} ${month} ${year}`}
+          {/* MAIN CONTAINER */}
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
+              <ChvPerformance />
+            </Grid>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={6}></Grid>
+            <Grid item xs={6}></Grid>
+          </Grid>
+        </Grid>
+        <Grid sx={{ backgroundColor: "#777" }} item xs={3}>
+          {data?.map((item, i) => (
+            <div key={i}>
+              <p>{item.module}</p>
+            </div>
+          ))}
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
