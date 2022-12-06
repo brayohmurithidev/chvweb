@@ -32,7 +32,6 @@
 .bodyWrapper {
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
     /* border: 1px solid #ccc; */
-    padding: 5px;
     width: 100%;
     box-sizing: border-box;
     margin: 60px auto 0 auto;

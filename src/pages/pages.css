@@ -1,7 +1,11 @@
 /* DASHBOARD STYLES */
-.dashboard{
-    background-color: red;
-    min-height: 100%;
+.dashboardContainer{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+.dashboardRight{
+    width: 20%;
 }
 
 /* END OF DASHBOARD STYLES */
