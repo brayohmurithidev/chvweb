@@ -1,17 +1,34 @@
 import { Button, FormControl, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../providers/AuthProvider";
 
 const Login = () => {
+  const { user, signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [pass, setPass] = useState("");
 
+  useEffect(() => {
+    if (user != null) {
+      <Navigate to="/" replace />;
+    }
+  }, [user]);
+
   // HANDLE LOGIN
   const handleLogin = async () => {
-    try {
-      setIsLoading(true);
-    } catch (error) {
-      console.log(error);
+    if (email === "" || pass === "") {
+      console.log("email and password cannot be null");
+    } else {
+      try {
+        setIsLoading(true);
+        await signIn(email, pass);
+        window.location.pathname = "/";
+        setEmail("");
+        setPass("");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (
@@ -27,14 +44,14 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
-            id="email"
+            id="pass"
             type="password"
             label="Password"
             variant="outlined"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
           />
-          <Button islo onClick={handleLogin} variant="contained">
+          <Button onClick={handleLogin} variant="contained">
             Login
           </Button>
         </FormControl>

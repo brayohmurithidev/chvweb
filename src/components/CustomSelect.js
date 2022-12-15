@@ -1,27 +1,40 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 // import SelectInput from "@mui/material/Select/SelectInput";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const CustomSelect = () => {
+const CustomSelect = ({ selectItems, setPayload }) => {
   const [selectedItem, setSelectedItem] = useState("");
-  const handleChange = (event) => {
-    setSelectedItem(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   // console.log(selectedItem);
+  //   setPayload({
+  //     module: selectedItem,
+  //   });
+  // };
+
+  useEffect(() => {
+    console.log(selectedItem);
+    setPayload({
+      module: selectedItem,
+    });
+  }, [selectedItem]);
+
   return (
-    <Box sx={{ m: 1, minWidth: 60 }}>
-      <FormControl fullWidth>
+    <Box sx={{ maxWidth: 150 }}>
+      <FormControl fullWidth size="small">
         <InputLabel id="module">Module</InputLabel>
         <Select
           labelId="module"
           id="moduleSelect"
-          value="module"
+          value={selectedItem}
           label="Module"
-          onChange={handleChange}
+          onChange={(e) => setSelectedItem(e.target.value)}
         >
-          <MenuItem value="1">Nutrition</MenuItem>
-          <MenuItem value="2">Nutrition</MenuItem>
-          <MenuItem value="3">Nutrition</MenuItem>
+          {selectItems.map((item) => (
+            <MenuItem key={item} value={item}>
+              {item}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>
