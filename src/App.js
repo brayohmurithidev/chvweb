@@ -1,18 +1,15 @@
 import Login from "./components/Login";
 import Dashboard from "./pages/Dashboard";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
 import "./pages/pages.css";
 import "./components/components.css";
 import Layout from "./components/Layout";
-import { useAuth } from "./providers/AuthProvider";
 import PrivateRoute from "./providers/PrivateRoute";
 import { userRoles } from "./providers/constants";
-import { useEffect } from "react";
+import Chvs from "./pages/Chvs";
 
 function App() {
-  const { user } = useAuth();
-
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
@@ -29,6 +26,14 @@ function App() {
           element={
             <PrivateRoute roles={[userRoles.admin]}>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/chvs"
+          element={
+            <PrivateRoute roles={[userRoles.admin]}>
+              <Chvs />
             </PrivateRoute>
           }
         />

@@ -21,11 +21,28 @@ const AuthProvider = ({ children }) => {
     const newUser = await app.logIn(creds);
     setUser(newUser);
   };
+
+  // REGISTER USER
+  const signUp = async (email, password, { ...customUserData }) => {
+    try {
+      const createUser = await app.emailPasswordAuth.registerUser({
+        email,
+        password,
+      });
+      if (!!createUser) {
+        console.log(!!createUser);
+      }
+      console.log(createUser);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
         user,
         signIn,
+        signUp,
       }}
     >
       {children}

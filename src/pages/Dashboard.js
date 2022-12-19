@@ -1,7 +1,6 @@
 import { Box, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ChvPerformance from "../components/ChvPerformance";
-import { useAuth } from "../providers/AuthProvider";
 
 const Dashboard = () => {
   // GET TODAY DATE
@@ -18,7 +17,7 @@ const Dashboard = () => {
           <h1>Tutor's Dashboard</h1>
           {`${day} ${month} ${year}`}
           {/* MAIN CONTAINER */}
-          <Grid container spacing={2}>
+          <Grid container mt={2} spacing={2}>
             <Grid item xs={12}>
               <ChvPerformance />
             </Grid>

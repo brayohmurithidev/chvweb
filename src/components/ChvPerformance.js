@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../providers/AuthProvider";
-import CustomSelect from "./CustomSelect";
+
 import CustomSlider from "./SLider";
 
 const ChvPerformance = ({ selectItems }) => {
@@ -59,7 +59,7 @@ const ChvPerformance = ({ selectItems }) => {
       {results.length >= 1 && (
         <Grid container>
           <Grid item xs={12} sm={12}>
-            <CustomSelect selectItems={results} setPayload={setPayload} />
+            {/* <CustomSelect selectItems={results} setPayload={setPayload} /> */}
             <Table sx={{ width: "100%" }}>
               <TableHead>
                 <TableRow>
