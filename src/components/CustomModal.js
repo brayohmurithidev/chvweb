@@ -22,7 +22,7 @@ const style = {
 const userRole = ["Admin", "Chv", "Chew"];
 
 export default function CustomModal({ open, handleClose }) {
-  const { signUp } = useAuth();
+  const { user } = useAuth();
   const [customUserData, SetCustomUserData] = useState({
     name: "",
     email: "",
@@ -46,14 +46,17 @@ export default function CustomModal({ open, handleClose }) {
       (password !== "" && password < 4)
     ) {
       SetCustomUserData({
-        name: name,
+        username: name,
         email: email,
         user_type: selectedItem,
       });
 
       // SIGNUP USER
-
-      const addUser = await signUp(email, password, customUserData);
+      try {
+        await user.functions.register(SetCustomUserData);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       console.log("Enter details");
     }

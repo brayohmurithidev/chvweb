@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
       if (!!createUser) {
         console.log(!!createUser);
       }
-      console.log(createUser);
+      console.log("New user is: ", createUser);
     } catch (error) {
       console.log(error);
     }
